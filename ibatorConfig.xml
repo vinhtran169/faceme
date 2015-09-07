@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+	<classPathEntry
+		location="D:\PROJECTS\faceme\faceme\src\main\resources\mysql-connector-java-5.1.6.jar" />
+	<ibatorContext id="ibatorContext" targetRuntime="Ibatis2Java5"
+		defaultModelType="flat">
+		<property name="" value="" />
+
+		<ibatorPlugin type="org.apache.ibatis.ibator.plugins.SerializablePlugin" />
+		<commentGenerator></commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/bookstore" userId="root"
+			password="khongco@12" />
+
+		<javaTypeResolver></javaTypeResolver>
+
+		<!-- Settings for generating persistence models -->
+		<javaModelGenerator targetPackage="com.faceme.model"
+			targetProject="faceme">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="
+				com.faceme.dbMaps"
+			targetProject="faceme" />
+		<daoGenerator targetPackage="com.faceme.dao" type=""
+			targetProject="faceme">
+		</daoGenerator>
+
+		<table tableName="author" />
+
+	</ibatorContext>
+</ibatorConfiguration> 
