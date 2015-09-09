@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.faceme.model.Student;
+import com.faceme.model.StudentLogin;
 import com.faceme.service.StudentService;
 
 @Controller
@@ -39,13 +40,13 @@ public class StudentController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model) {
-		Student studentLogin = new Student();
+		StudentLogin studentLogin = new StudentLogin();
 		model.addAttribute("studentLogin", studentLogin);
 		return "login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@ModelAttribute("studentLogin") Student studentLogin) {
+	public String login(@ModelAttribute("studentLogin") StudentLogin studentLogin) {
 		boolean found = studentService.getStudentByLogin(studentLogin.getUserName(), studentLogin.getPassword());
 		if (found) {				
 			return "success";

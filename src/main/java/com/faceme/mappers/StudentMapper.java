@@ -1,4 +1,4 @@
-package com.faceme.mapper;
+package com.faceme.mappers;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;

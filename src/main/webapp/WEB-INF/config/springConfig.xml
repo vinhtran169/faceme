@@ -11,7 +11,7 @@
 
 <mvc:annotation-driven />
 
-<context:component-scan base-package="com.faceme.controller" />
+<context:component-scan base-package="com.faceme" />
 
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/jsp/" />
@@ -22,14 +22,17 @@
 	<property name="basename" value="jdbc" />
 </bean>
 
-<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" scope="singleton">
-	<property name="jndiName" value="java:comp/env/jdbc/pcmDB" />
-	<property name="resourceRef" value="true" />		
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	<property name="url" value="jdbc:mysql://mydbinstance.cavpckqdd90v.us-east-1.rds.amazonaws.com:3306/studentEnrollment?autoReconnect=true&amp;createDatabaseIfNotExist=true&amp;" />
+	<property name="username" value="awsuser" />
+	<property name="password" value="password" />
 </bean>
 
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="dataSource" ref="dataSource" />
-	<property name="configLocation" value="classpath:config/mybatisV3-config.xml"/>
+	<property name="typeAliasesPackage" value="com.github.elizabetht.model"/>
+	<property name="mapperLocations" value="classpath*:com/github/elizabetht/mappers/*.xml" />
 </bean>
 
 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -37,7 +40,7 @@
 </bean>
 
 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	<property name="basePackage" value="com.faceme.mapper" />
+	<property name="basePackage" value="com.faceme.mappers" />
 </bean>
 
 <tx:annotation-driven transaction-manager="transactionManager" />
